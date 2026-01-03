@@ -1,0 +1,21 @@
+// Save data locally
+function saveData() {
+  const name = document.getElementById('name').value;
+  localStorage.setItem('userName', name);
+  alert('Byabitswe neza!');
+}
+
+function loadData() {
+  const saved = localStorage.getItem('userName');
+  document.getElementById('output').innerText = saved || 'Nta data ibitswe';
+}
+
+// Export CSV
+function exportCSV() {
+  let data = "Izina\n" + (localStorage.getItem('userName') || '');
+  let blob = new Blob([data], { type: "text/csv" });
+  let a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = "report.csv";
+  a.click();
+}
